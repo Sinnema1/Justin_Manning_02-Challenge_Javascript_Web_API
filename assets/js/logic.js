@@ -7,12 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (body.classList.contains("light")) {
       body.classList.remove("light");
       body.classList.add("dark");
-      body.style.setProperty("--circle-color", "darkgray");
+      body.style.setProperty("--circle-color", "darkblue");
       localStorage.setItem("mode", "dark");
     } else {
       body.classList.remove("dark");
       body.classList.add("light");
-      body.style.removeProperty("--circle-color"); // Reset to default
+      body.style.removeProperty("--circle-color");
       localStorage.setItem("mode", "light");
     }
   }
@@ -21,13 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (savedMode) {
     body.classList.add(savedMode);
     if (savedMode === "dark") {
-      body.style.setProperty("--circle-color", "darkgray");
+      body.style.setProperty("--circle-color", "darkblue");
     } else {
-      body.style.removeProperty("--circle-color"); // Reset to default
+      body.style.removeProperty("--circle-color");
     }
   } else {
     body.classList.add("light");
-    body.style.removeProperty("--circle-color"); // Reset to default
+    body.style.removeProperty("--circle-color");
   }
 
   if (toggleButton) {
@@ -43,7 +43,7 @@ function readLocalStorage(key) {
 
 // TODO: Create a function called `storeLocalStorage` that takes a given object and saves the new data to the existing blog data in local storage.
 function storeLocalStorage(key, newData) {
-  const existingData = readLocalStorage(key);
+  const existingData = JSON.parse(localStorage.getItem(key)) || [];
   existingData.push(newData);
   localStorage.setItem(key, JSON.stringify(existingData));
 }

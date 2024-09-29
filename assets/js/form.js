@@ -24,7 +24,7 @@ function handleFormSubmit(event) {
   };
 
   storeLocalStorage("blogPosts", blogPost);
-  formElement.reset();
+  document.querySelector("form").reset();
   redirectPage("./blog.html");
 }
 
