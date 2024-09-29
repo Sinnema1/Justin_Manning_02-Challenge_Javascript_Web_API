@@ -4,9 +4,10 @@ const formElement = document.querySelector("form");
 // TODO: Create a function that handles the form submission. Grab the form data and store it in local storage, then redirect to the blog page using the `redirectPage` function. If the form is submitted with missing data, display an error message to the user.
 function handleFormSubmit(event) {
   event.preventDefault();
-  const username = document.querySelector("#username").value.trim();
-  const title = document.querySelector("#title").value.trim();
-  const content = document.querySelector("#content").value.trim();
+
+  const username = formElement.username.value.trim();
+  const title = formElement.title.value.trim();
+  const content = formElement.content.value.trim();
   const errorElement = document.getElementById("error");
 
   if (!username || !title || !content) {
@@ -23,8 +24,19 @@ function handleFormSubmit(event) {
     content: content,
   };
 
-  storeLocalStorage("blogPosts", blogPost);
-  document.querySelector("form").reset();
+  // Variable to read existing blog posts from localStorage
+  const blogPosts = readLocalStorage("blogPosts");
+
+  // Add the new blog post to the array
+  blogPosts.push(blogPost);
+
+  // Save the updated array back to localStorage
+  storeLocalStorage("blogPosts", blogPosts);
+
+  // Reset the form
+  formElement.reset();
+
+  // Redirect to the blog page
   redirectPage("./blog.html");
 }
 
