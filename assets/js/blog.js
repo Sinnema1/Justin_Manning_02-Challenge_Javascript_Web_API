@@ -3,16 +3,16 @@ const mainElement = document.querySelector("main");
 const backButton = document.getElementById("back");
 
 // TODO: Create a function that builds an element and appends it to the DOM
-function createElementAndAppend(elementType, attributes, parentElement) {
-  const newElement = document.createElement(elementType);
-  for (const key in attributes) {
-    if (attributes.hasOwnProperty(key)) {
-      newElement.setAttribute(key, attributes[key]);
+function createElementAndAppend(tag, attributes, parentElement) {
+    const newElement = document.createElement(tag);
+    if (attributes) {
+      for (const key in attributes) {
+        newElement.setAttribute(key, attributes[key]);
+      }
     }
+    parentElement.appendChild(newElement);
+    return newElement;
   }
-  parentElement.appendChild(newElement);
-  return newElement;
-}
 
 // TODO: Create a function that handles the case where there are no blog posts to display
 function handleNoBlogPosts() {

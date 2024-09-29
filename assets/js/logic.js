@@ -2,17 +2,18 @@
 document.addEventListener("DOMContentLoaded", () => {
   const toggleButton = document.getElementById("toggle");
   const body = document.body;
+  const root = document.documentElement;
 
   function toggleMode() {
     if (body.classList.contains("light")) {
       body.classList.remove("light");
       body.classList.add("dark");
-      body.style.setProperty("--circle-color", "darkblue");
+      root.style.setProperty("--circle-color", "darkblue");
       localStorage.setItem("mode", "dark");
     } else {
       body.classList.remove("dark");
       body.classList.add("light");
-      body.style.removeProperty("--circle-color");
+      root.style.removeProperty("--circle-color");
       localStorage.setItem("mode", "light");
     }
   }
@@ -21,13 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (savedMode) {
     body.classList.add(savedMode);
     if (savedMode === "dark") {
-      body.style.setProperty("--circle-color", "darkblue");
+      root.style.setProperty("--circle-color", "darkblue");
     } else {
-      body.style.removeProperty("--circle-color");
+      root.style.removeProperty("--circle-color");
     }
   } else {
     body.classList.add("light");
-    body.style.removeProperty("--circle-color");
+    root.style.removeProperty("--circle-color");
   }
 
   if (toggleButton) {
