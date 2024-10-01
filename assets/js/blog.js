@@ -25,21 +25,17 @@ function handleNoBlogPosts() {
 
 // TODO: Create a function called `renderBlogList` that renders the list of blog posts if they exist. If not, call the no posts function.
 function renderBlogList() {
-  const blogPosts = readLocalStorage("blogPosts");
+  const posts = readLocalStorage("blogPosts");
   mainElement.innerHTML = "";
-  if (blogPosts.length === 0) {
+  if (posts.length === 0) {
     handleNoBlogPosts();
   } else {
-    blogPosts.forEach((post) => {
+    posts.forEach((post) => {
       const postElement = createElementAndAppend("article", {}, mainElement);
-      createElementAndAppend(
-        "p",
-        {},
-        postElement
-      ).textContent = `Posted by: ${post.username}`;
+      createElementAndAppend("p", {}, postElement).textContent = `Posted by: ${post.username}`;
       createElementAndAppend("h2", {}, postElement).textContent = post.title;
-      createElementAndAppend("blockquote", {}, postElement).textContent =
-        post.content;
+      createElementAndAppend("blockquote", {}, postElement).textContent = post.content;
+      console.log(posts[0].username);
     });
   }
 }

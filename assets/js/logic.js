@@ -37,10 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // TODO: Create a function called `readLocalStorage` that reads from local storage and returns the data. If no data exists, return an empty array.
-// function readLocalStorage(key) {
-//   const data = localStorage.getItem(key);
-//   return data ? JSON.parse(data) : [];
-// }
 function readLocalStorage() {
   const posts = JSON.parse(localStorage.getItem("blogPosts"));
   if (posts) {
@@ -53,11 +49,6 @@ function readLocalStorage() {
 }
 
 // TODO: Create a function called `storeLocalStorage` that takes a given object and saves the new data to the existing blog data in local storage.
-// function storeLocalStorage(key, newData) {
-//   const existingData = JSON.parse(localStorage.getItem(key)) || [];
-//   existingData.push(newData);
-//   localStorage.setItem(key, JSON.stringify(existingData));
-// }
 let blogPosts = [];
 function storeLocalStorage() {
   localStorage.setItem("blogPosts", JSON.stringify(blogPosts));
